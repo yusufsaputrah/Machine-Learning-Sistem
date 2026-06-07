@@ -1,4 +1,4 @@
-name: Advanced CI Pipeline
+name: Advanced CI Pipeline # trigger
 
 on:
   push:
