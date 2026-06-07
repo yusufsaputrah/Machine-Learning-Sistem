@@ -1,0 +1,45 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Machine Learning Models
+*.h5
+*.hdf5
+*.pkl
+*.pt
+*.pth
+*.joblib
+*.onnx
+
+# Data files
+# Jika Anda ingin commit beberapa CSV, Anda dapat menghapus atau mengubah aturan di bawah ini
+# *.csv
+*.dat
+*.sqlite
+*.db
+
+# Mac OS
+.DS_Store
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log

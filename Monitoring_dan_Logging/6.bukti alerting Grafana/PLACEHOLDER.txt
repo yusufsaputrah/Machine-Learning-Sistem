@@ -1,0 +1,8 @@
+Silakan masukkan 3 screenshot Rules Alerting dan 3 screenshot Notifikasi (Telegram/Discord/Email) Grafana Anda di folder ini.
+Contoh nama file:
+- 1.rules_error_rate.jpg
+- 2.notifikasi_error_rate.jpg
+- 3.rules_high_latency.jpg
+- 4.notifikasi_high_latency.jpg
+- 5.rules_data_drift.jpg
+- 6.notifikasi_data_drift.jpg
