@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/Machine-Learning-Sistem/Machine-Learning-Sistem/Workflow-CI/MLProject/mlruns/0/ebd3ee089f85453baeadafaf55d3c200/artifacts
+end_time: 1780852598675
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ebd3ee089f85453baeadafaf55d3c200
+run_name: delicate-lynx-487
+run_uuid: ebd3ee089f85453baeadafaf55d3c200
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780852588437
+status: 3
+tags: []
+user_id: runner
