@@ -1,0 +1,8 @@
+Tautan GitHub Repository Workflow-CI:
+https://github.com/yusufsaputrah/Machine-Learning-Sistem/tree/main/Workflow-CI
+
+Tautan GitHub Actions:
+https://github.com/yusufsaputrah/Machine-Learning-Sistem/actions
+
+Tautan Docker Hub:
+https://hub.docker.com/r/yusuf1610/sistem-ml-model
