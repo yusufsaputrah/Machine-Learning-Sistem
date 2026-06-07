@@ -6,15 +6,12 @@ import mlflow
 import mlflow.sklearn
 
 def train():
-    # Mengaktifkan autologging untuk Scikit-learn
     mlflow.sklearn.autolog()
     
-    # Load dataset hasil preprocessing
     df = pd.read_csv('dataset_preprocessing.csv')
     X = df.drop('target', axis=1)
     y = df['target']
     
-    # Split data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
     # Memulai MLflow run
