@@ -50,19 +50,6 @@ jobs:
           echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
           echo "Latest Run ID: $RUN_ID"
 
-      - name: Install Python dependencies
-        run: |
-          pip install dvc dvc-gdrive
-
-      - name: Upload to GitHub
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add Workflow-CI/MLProject/mlruns/
-          git commit -m "chore: upload MLflow local runs to GitHub" || echo "No changes to commit"
-          git pull --rebase origin main
-          git push
-
       - name: Build Docker Model
         env:
           # Sama persis dengan saat training agar MLflow bisa resolve runs:/<run_id>/model
