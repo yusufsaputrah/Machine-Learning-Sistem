@@ -33,6 +33,8 @@ jobs:
         env:
           # Gunakan path absolut agar artifact_uri selalu resolved dengan benar
           MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/Workflow-CI/MLProject/mlruns"
+          # Diperlukan di MLflow terbaru agar file store tidak diblokir
+          MLFLOW_ALLOW_FILE_STORE: "true"
         run: |
           cd Workflow-CI/MLProject
           # Hapus mlruns lama agar selalu fresh (hindari konflik artifact_location dari run sebelumnya)
@@ -64,6 +66,7 @@ jobs:
         env:
           # Sama persis dengan saat training agar MLflow bisa resolve runs:/<run_id>/model
           MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/Workflow-CI/MLProject/mlruns"
+          MLFLOW_ALLOW_FILE_STORE: "true"
         run: |
           # Gunakan runs:/<run_id>/model — MLflow akan resolve artifact via tracking URI
           mlflow models build-docker \
