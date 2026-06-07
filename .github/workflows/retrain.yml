@@ -30,6 +30,8 @@ jobs:
           pip install mlflow pandas scikit-learn
 
       - name: Run mlflow project
+        env:
+          MLFLOW_ALLOW_FILE_STORE: "true"
         run: |
           cd Workflow-CI/MLProject
           mlflow run . -P n_estimators=100 --env-manager=local
@@ -56,6 +58,8 @@ jobs:
           git push
 
       - name: Build Docker Model
+        env:
+          MLFLOW_ALLOW_FILE_STORE: "true"
         run: |
           cd Workflow-CI/MLProject
           mlflow models build-docker -m mlruns/0/${{ env.RUN_ID }}/artifacts/model -n sistem-ml-model:latest
