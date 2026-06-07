@@ -1,0 +1,8 @@
+digest: 8753d821
+name: dataset
+profile: '{"num_rows": 6, "num_elements": 12}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "age_scaled", "required":
+  true}, {"type": "double", "name": "income_scaled", "required": true}]}'
+source: '{"tags": {"mlflow.user": "runner", "mlflow.source.name": "modelling.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "72b3fea3f75a90261524777da0c8559643e49bdc"}}'
+source_type: code
