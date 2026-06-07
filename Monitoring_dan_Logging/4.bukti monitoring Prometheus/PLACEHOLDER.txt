@@ -1,6 +1,0 @@
-Silakan masukkan 10 screenshot metrik Prometheus Anda di folder ini untuk memenuhi target kriteria Advance.
-Contoh nama file:
-- 1.monitoring_request_count.jpg
-- 2.monitoring_error_count.jpg
-...
-- 10.monitoring_cpu_usage.jpg
