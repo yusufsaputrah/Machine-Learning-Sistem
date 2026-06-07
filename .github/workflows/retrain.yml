@@ -31,9 +31,12 @@ jobs:
 
       - name: Run mlflow project
         env:
-          MLFLOW_ALLOW_FILE_STORE: "true"
+          # Gunakan path absolut agar artifact_uri selalu resolved dengan benar
+          MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/Workflow-CI/MLProject/mlruns"
         run: |
           cd Workflow-CI/MLProject
+          # Hapus mlruns lama agar selalu fresh (hindari konflik artifact_location dari run sebelumnya)
+          rm -rf mlruns
           mlflow run . -P n_estimators=100 --env-manager=local
 
       - name: Get latest MLflow run_id
@@ -59,10 +62,13 @@ jobs:
 
       - name: Build Docker Model
         env:
-          MLFLOW_ALLOW_FILE_STORE: "true"
+          # Sama persis dengan saat training agar MLflow bisa resolve runs:/<run_id>/model
+          MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/Workflow-CI/MLProject/mlruns"
         run: |
-          cd Workflow-CI/MLProject
-          mlflow models build-docker -m mlruns/0/${{ env.RUN_ID }}/artifacts/model -n sistem-ml-model:latest
+          # Gunakan runs:/<run_id>/model — MLflow akan resolve artifact via tracking URI
+          mlflow models build-docker \
+            -m "runs:/${{ env.RUN_ID }}/model" \
+            -n sistem-ml-model:latest
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
