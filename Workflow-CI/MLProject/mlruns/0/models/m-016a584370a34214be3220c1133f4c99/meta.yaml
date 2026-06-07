@@ -1,0 +1,10 @@
+artifact_location: file:///home/runner/work/Machine-Learning-Sistem/Machine-Learning-Sistem/Workflow-CI/MLProject/mlruns/0/models/m-016a584370a34214be3220c1133f4c99/artifacts
+creation_timestamp: 1780854404706
+experiment_id: '0'
+last_updated_timestamp: 1780854407773
+model_id: m-016a584370a34214be3220c1133f4c99
+model_type: null
+name: model
+source_run_id: 4e27eeb7d58a41919f24867789993ecb
+status: 2
+status_message: null
