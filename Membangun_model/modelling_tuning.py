@@ -21,7 +21,8 @@ def train_tuning():
     mlflow.set_experiment("Advance_Tuning_RandomForest")
     
     # Load dataset
-    df = pd.read_csv('dataset_preprocessing.csv')
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(base_dir, 'dataset_preprocessing.csv'))
     X = df.drop('target', axis=1)
     y = df['target']
     
@@ -63,23 +64,26 @@ def train_tuning():
         plt.title('Test Confusion Matrix')
         plt.ylabel('Actual')
         plt.xlabel('Predicted')
-        plt.savefig('test_confusion_matrix.png')
-        mlflow.log_artifact('test_confusion_matrix.png')
+        cm_path = os.path.join(base_dir, 'test_confusion_matrix.png')
+        plt.savefig(cm_path)
+        mlflow.log_artifact(cm_path)
         
         # Artifact Tambahan 2: Feature Importance Plot
         importances = best_model.feature_importances_
         plt.figure(figsize=(8,6))
         sns.barplot(x=importances, y=X.columns)
         plt.title('Feature Importances')
-        plt.savefig('feature_importance.png')
-        mlflow.log_artifact('feature_importance.png')
+        fi_path = os.path.join(base_dir, 'feature_importance.png')
+        plt.savefig(fi_path)
+        mlflow.log_artifact(fi_path)
         
         # Artifact Tambahan 3: Classification Report CSV
         from sklearn.metrics import classification_report
         report = classification_report(y_test, preds, output_dict=True)
         report_df = pd.DataFrame(report).transpose()
-        report_df.to_csv('classification_report.csv')
-        mlflow.log_artifact('classification_report.csv')
+        cr_path = os.path.join(base_dir, 'classification_report.csv')
+        report_df.to_csv(cr_path)
+        mlflow.log_artifact(cr_path)
         
         print(f"Model trained. Best Params: {grid_search.best_params_}, Accuracy: {acc}")
 
