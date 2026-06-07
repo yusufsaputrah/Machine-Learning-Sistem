@@ -14,8 +14,8 @@ import dagshub
 dagshub.init(repo_owner='yusufsaputrah', repo_name='Machine-Learning-Sistem', mlflow=True)
 
 def train_tuning():
-    # Pastikan autolog dimatikan karena kriteria Skilled/Advance mengharuskan manual logging
-    mlflow.sklearn.autolog(disable=True)
+    # Mengaktifkan autolog untuk memenuhi kriteria Skilled (menghasilkan estimator.html, metric_info.json, dll)
+    mlflow.sklearn.autolog()
     
     # Set eksperimen
     mlflow.set_experiment("Advance_Tuning_RandomForest")
@@ -53,32 +53,20 @@ def train_tuning():
         
         # Metriks
         acc = accuracy_score(y_test, preds)
-        prec = precision_score(y_test, preds)
-        rec = recall_score(y_test, preds)
-        f1 = f1_score(y_test, preds)
         
-        # Manual Logging Parameter
-        mlflow.log_params(grid_search.best_params_)
+        # --- ARTEFAK TAMBAHAN UNTUK KRITERIA ADVANCED ---
         
-        # Manual Logging Metrik
-        mlflow.log_metrics({
-            "accuracy": acc,
-            "precision": prec,
-            "recall": rec,
-            "f1_score": f1
-        })
-        
-        # Artifact 1: Confusion Matrix Plot
+        # Artifact Tambahan 1: Test Confusion Matrix Plot
         cm = confusion_matrix(y_test, preds)
         plt.figure(figsize=(8,6))
         sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-        plt.title('Confusion Matrix')
+        plt.title('Test Confusion Matrix')
         plt.ylabel('Actual')
         plt.xlabel('Predicted')
-        plt.savefig('confusion_matrix.png')
-        mlflow.log_artifact('confusion_matrix.png')
+        plt.savefig('test_confusion_matrix.png')
+        mlflow.log_artifact('test_confusion_matrix.png')
         
-        # Artifact 2: Feature Importance Plot
+        # Artifact Tambahan 2: Feature Importance Plot
         importances = best_model.feature_importances_
         plt.figure(figsize=(8,6))
         sns.barplot(x=importances, y=X.columns)
@@ -86,8 +74,12 @@ def train_tuning():
         plt.savefig('feature_importance.png')
         mlflow.log_artifact('feature_importance.png')
         
-        # Menyimpan model
-        mlflow.sklearn.log_model(best_model, "random_forest_model")
+        # Artifact Tambahan 3: Classification Report CSV
+        from sklearn.metrics import classification_report
+        report = classification_report(y_test, preds, output_dict=True)
+        report_df = pd.DataFrame(report).transpose()
+        report_df.to_csv('classification_report.csv')
+        mlflow.log_artifact('classification_report.csv')
         
         print(f"Model trained. Best Params: {grid_search.best_params_}, Accuracy: {acc}")
 
