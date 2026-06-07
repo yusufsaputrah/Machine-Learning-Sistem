@@ -1,4 +1,4 @@
-artifact_uri: file:///home/runner/work/Machine-Learning-Sistem/Machine-Learning-Sistem/Workflow-CI/MLProject/mlruns/0/ebd3ee089f85453baeadafaf55d3c200/artifacts
+artifact_uri: mlruns/0/ebd3ee089f85453baeadafaf55d3c200/artifacts
 end_time: 1780852598675
 entry_point_name: ''
 experiment_id: '0'
