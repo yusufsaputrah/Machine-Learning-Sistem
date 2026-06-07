@@ -33,7 +33,7 @@ jobs:
       - name: Run mlflow project
         run: |
           cd Workflow-CI/MLProject
-          mlflow run . -P n_estimators=100 --no-conda
+          mlflow run . -P n_estimators=100 --env-manager=local
 
       - name: Get latest MLflow run_id
         id: get_run_id
