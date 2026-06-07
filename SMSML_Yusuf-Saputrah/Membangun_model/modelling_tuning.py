@@ -9,9 +9,9 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix
 import os
 
-# Konfigurasi DagsHub URI
-import dagshub
-dagshub.init(repo_owner='yusufsaputrah', repo_name='Machine-Learning-Sistem', mlflow=True)
+# Konfigurasi DagsHub URI (Silakan ubah dengan URI DagsHub Anda jika menggunakan DagsHub)
+# import dagshub
+# dagshub.init(repo_owner='Yusuf-Saputrah', repo_name='Sistem-ML-Project', mlflow=True)
 
 def train_tuning():
     # Pastikan autolog dimatikan karena kriteria Skilled/Advance mengharuskan manual logging
@@ -21,7 +21,7 @@ def train_tuning():
     mlflow.set_experiment("Advance_Tuning_RandomForest")
     
     # Load dataset
-    df = pd.read_csv('dataset_preprocessing.csv')
+    df = pd. pd.read_csv('dataset_preprocessing.csv')
     X = df.drop('target', axis=1)
     y = df['target']
     

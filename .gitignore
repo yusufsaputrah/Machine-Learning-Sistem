@@ -43,3 +43,6 @@ __pycache__/
 # Logs
 logs/
 *.log
+
+# Archives
+*.zip

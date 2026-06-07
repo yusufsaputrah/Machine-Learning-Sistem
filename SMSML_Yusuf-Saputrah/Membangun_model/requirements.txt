@@ -1,6 +1,6 @@
 pandas
 scikit-learn
-mlflow==2.19.0
+mlflow
 matplotlib
 seaborn
 dagshub
