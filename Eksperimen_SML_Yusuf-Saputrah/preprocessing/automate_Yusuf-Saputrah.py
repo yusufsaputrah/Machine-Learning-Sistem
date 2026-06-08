@@ -28,8 +28,8 @@ def save_data(df, output_path):
 
 if __name__ == "__main__":
     # Jalur relatif
-    raw_path = "../dataset_raw.csv"
-    output_path = "dataset_preprocessing.csv"
+    raw_path = "../dataset_raw/dataset_raw.csv"
+    output_path = "dataset_preprocessing/dataset_preprocessing.csv"
     
     print("Loading raw data...")
     df_raw = load_data(raw_path)
