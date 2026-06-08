@@ -23,8 +23,8 @@ Proyek ini merupakan *submission* untuk kelas **Machine Learning System (MLOps)*
 Repositori ini terdiri dari 4 komponen utama yang masing-masing memenuhi **Kriteria Advance**:
 
 ### 1. Kriteria 1: Eksperimen Dataset (`Eksperimen_SML_Yusuf-Saputrah/`)
-> **PEMBERITAHUAN UNTUK REVIEWER:** Sesuai *feedback*, bagian ini telah dipindahkan ke **repositori terpisah**.
-> Tautan Repositori: [https://github.com/yusufsaputrah/Eksperimen_SML](https://github.com/yusufsaputrah/Eksperimen_SML)
+> **Catatan untuk Reviewer:** Halo kak, sesuai feedback sebelumnya, Kriteria 1 ini sudah saya pisahkan ke repository sendiri ya.
+> Link Repository: [https://github.com/yusufsaputrah/Eksperimen_SML](https://github.com/yusufsaputrah/Eksperimen_SML)
 
 Berisi skrip untuk eksperimen dan otomatisasi *Data Preprocessing*.
 - `preprocessing/Eksperimen_Yusuf-Saputrah.ipynb`: Eksperimen awal (Data Loading, EDA, Preprocessing).
@@ -38,8 +38,8 @@ Berisi skrip untuk *Model Training* dan integrasi MLflow.
 - **Pencapaian Advance:** Eksperimen telah tersimpan secara *online* di DagsHub dan menggunakan *manual logging* dengan lebih dari 2 artefak tambahan.
 
 ### 3. Kriteria 3: Workflow CI (`Workflow-CI/`)
-> **PEMBERITAHUAN UNTUK REVIEWER:** Sesuai *feedback*, bagian ini telah dipindahkan ke **repositori terpisah**.
-> Tautan Repositori: [https://github.com/yusufsaputrah/Workflow-CI](https://github.com/yusufsaputrah/Workflow-CI)
+> **Catatan untuk Reviewer:** Halo kak, sesuai feedback sebelumnya, Kriteria 3 ini juga sudah saya pisahkan ke repository sendiri ya.
+> Link Repository: [https://github.com/yusufsaputrah/Workflow-CI](https://github.com/yusufsaputrah/Workflow-CI)
 
 Berisi konfigurasi otomatisasi CI/CD untuk pelatihan ulang model.
 - `MLProject/`: Folder utama MLflow Project (berisi skrip training dan `conda.yaml`).
