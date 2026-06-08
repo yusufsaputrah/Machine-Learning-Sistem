@@ -9,9 +9,13 @@ def simulate_traffic():
     for i in range(50):
         print(f"Request ke-{i+1}...")
         
-        # Data payload nyata yang akan mempengaruhi metrik drift di server
+        # Data payload nyata dengan 2 fitur (age_scaled, income_scaled)
+        # Sesuai dengan dataset yang dilatih model
+        age_scaled = random.uniform(-2.0, 2.0)
+        income_scaled = random.uniform(-2.0, 2.0)
+        
         payload = {
-            "features": [random.uniform(0, 1) for _ in range(5)]
+            "features": [age_scaled, income_scaled]
         }
         
         try:
@@ -20,14 +24,14 @@ def simulate_traffic():
             latency = time.time() - start_req
             
             if response.status_code == 200:
-                print(f" Sukses! Prediksi: {response.json().get('prediction'):.4f} | Latency Jaringan: {latency:.4f}s")
+                print(f" Sukses! Fitur: [{age_scaled:.2f}, {income_scaled:.2f}] | Prediksi Kelas: {response.json().get('prediction')} | Latency: {latency:.4f}s")
             else:
-                print(f" Gagal dengan status {response.status_code}")
+                print(f" Gagal dengan status {response.status_code}: {response.text}")
                 
         except requests.exceptions.RequestException as e:
             print(f" Error koneksi: {e}")
             
-        time.sleep(random.uniform(0.5, 2.0)) # Jeda antar request nyata
+        time.sleep(0.5) # Jeda antar request nyata
         
 if __name__ == "__main__":
     simulate_traffic()

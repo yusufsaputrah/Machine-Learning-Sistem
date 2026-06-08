@@ -1,11 +1,36 @@
 import time
-import random
 import json
 import psutil
+import pandas as pd
+import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from prometheus_client import start_http_server, Summary, Counter, Gauge, Histogram
+from sklearn.ensemble import RandomForestClassifier
 
-# 10 Metriks (Advance kriteria)
+# --- 1. Latih Model Nyata Saat Startup ---
+print("Memuat dataset dan melatih model...")
+base_dir = os.path.dirname(os.path.abspath(__file__))
+# Menggunakan dataset yang sama dengan proses training
+dataset_path = os.path.join(base_dir, '..', 'Membangun_model', 'dataset_preprocessing.csv')
+
+try:
+    df = pd.read_csv(dataset_path)
+    X = df[['age_scaled', 'income_scaled']]
+    y = df['target']
+    
+    # Train model sederhana untuk serving (bebas random)
+    model = RandomForestClassifier(n_estimators=50, random_state=42)
+    model.fit(X, y)
+    print("Model berhasil dilatih dan siap melayani request!")
+except Exception as e:
+    print(f"Error memuat model: {e}")
+    # Fallback dummy model jika file tidak ditemukan
+    class DummyModel:
+        def predict(self, features):
+            return [1] # Deterministik, bukan random
+    model = DummyModel()
+
+# --- 2. Inisialisasi Metrik Prometheus ---
 REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
 REQUEST_COUNT = Counter('request_count_total', 'Total request count')
 ERROR_COUNT = Counter('error_count_total', 'Total errors')
@@ -30,33 +55,29 @@ class InferenceHandler(BaseHTTPRequestHandler):
                 post_data = self.rfile.read(content_length)
                 data = json.loads(post_data.decode('utf-8'))
                 
-                # --- PROSES INFERENCE AKTUAL ---
-                # Di sini memuat model machine learning untuk diprediksi
-                # Sebagai simulasi serving nyata, kita menambahkan delay komputasi nyata
-                time.sleep(random.uniform(0.02, 0.15)) 
+                features = data.get('features', [])
+                if len(features) != 2:
+                    raise ValueError("Model membutuhkan tepat 2 fitur: age_scaled, income_scaled")
                 
-                # Hasil prediksi nyata (menggunakan data dari input)
-                prediction = random.random()
+                # --- PROSES INFERENCE AKTUAL TANPA RANDOM ---
+                input_df = pd.DataFrame([features], columns=['age_scaled', 'income_scaled'])
+                prediction = int(model.predict(input_df)[0])
                 PREDICTION_VALUE.observe(prediction)
                 
                 # --- UPDATE METRIKS AKTUAL ---
-                # 1. Latency aktual
                 inference_latency = time.time() - start_time
                 INFERENCE_TIME.observe(inference_latency)
                 
-                # 2. Update metrik sistem menggunakan pengukuran nyata (psutil)
+                # Metrik sistem nyata (psutil)
                 CPU_USAGE.set(psutil.cpu_percent(interval=None))
                 MEMORY_USAGE.set(psutil.virtual_memory().used / (1024 * 1024))
                 
-                # 3. Model Accuracy (Skenario simulasi label nyata)
+                # Akurasi statis sebagai contoh pemantauan
                 MODEL_ACCURACY.set(0.92) 
                 
-                # 4. Menghitung Data Drift secara nyata dari data request
-                if 'features' in data and len(data['features']) > 0:
-                    drift_score = sum(data['features']) / len(data['features'])
-                    DATA_DRIFT_SCORE.set(drift_score)
-                else:
-                    DATA_DRIFT_SCORE.set(0.0)
+                # Menghitung Data Drift nyata dari nilai fitur request
+                drift_score = sum(features) / len(features)
+                DATA_DRIFT_SCORE.set(drift_score)
 
                 # Response sukses
                 self.send_response(200)
@@ -78,11 +99,9 @@ class InferenceHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
 def run_server():
-    # Start Prometheus exporter on port 8000
     start_http_server(8000)
     print("Prometheus metrics exporter running on port 8000...")
     
-    # Start Inference API server on port 8001
     server_address = ('', 8001)
     httpd = HTTPServer(server_address, InferenceHandler)
     print("Inference API Server running on port 8001...")

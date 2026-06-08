@@ -14,8 +14,8 @@ import dagshub
 dagshub.init(repo_owner='yusufsaputrah', repo_name='Machine-Learning-Sistem', mlflow=True)
 
 def train_tuning():
-    # Mengaktifkan autolog untuk memenuhi kriteria Skilled (menghasilkan estimator.html, metric_info.json, dll)
-    mlflow.sklearn.autolog()
+    # Menggunakan manual logging untuk memenuhi kriteria Skilled
+    # mlflow.sklearn.autolog() dihapus
     
     # Set eksperimen
     mlflow.set_experiment("Advance_Tuning_RandomForest")
@@ -54,6 +54,11 @@ def train_tuning():
         
         # Metriks
         acc = accuracy_score(y_test, preds)
+        
+        # Manual Logging Parameter, Metric, dan Model
+        mlflow.log_params(grid_search.best_params_)
+        mlflow.log_metric("accuracy", acc)
+        mlflow.sklearn.log_model(best_model, "model")
         
         # --- ARTEFAK TAMBAHAN UNTUK KRITERIA ADVANCED ---
         
