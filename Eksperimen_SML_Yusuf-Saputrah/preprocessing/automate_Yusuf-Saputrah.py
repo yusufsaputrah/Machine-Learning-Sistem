@@ -20,7 +20,9 @@ def preprocess_data(df):
     return df_preprocessed
 
 def save_data(df, output_path):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    dir_name = os.path.dirname(output_path)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
     df.to_csv(output_path, index=False)
     print(f"Data saved to {output_path}")
 
