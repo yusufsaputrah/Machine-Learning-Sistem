@@ -35,7 +35,8 @@ Berisi skrip untuk eksperimen dan otomatisasi *Data Preprocessing*.
 Berisi skrip untuk *Model Training* dan integrasi MLflow.
 - `modelling.py`: Pelatihan model dasar dengan MLflow autologging.
 - `modelling_tuning.py`: Hyperparameter tuning (GridSearchCV), pencatatan *manual logging*, dan tambahan artefak pendukung (Confusion Matrix, Feature Importance, Classification Report).
-- `Screenshot_dashboard.png`: Bukti *screenshot* dari *dashboard* MLflow yang menampilkan daftar seluruh *runs* dalam eksperimen.
+- `Screenshot_dashboard.png`: Bukti *screenshot* dari *dashboard* MLflow di DagsHub yang menampilkan daftar seluruh *runs* dalam eksperimen.
+- `Screenshot_artifacts.png`: Bukti *screenshot* halaman *Run Detail / Artifacts* di DagsHub yang menampilkan model, metrics, dan grafik yang tersimpan.
 - **Pencapaian Advance:** Eksperimen telah tersimpan secara *online* di DagsHub dan menggunakan *manual logging* dengan lebih dari 2 artefak tambahan.
 
 ### 3. Kriteria 3: Workflow CI (`Workflow-CI/`)
