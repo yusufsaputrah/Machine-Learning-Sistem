@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'dataset_raw.csv'
-      - 'preprocessing/automate_Yusuf-Saputrah.py'
+      - 'Eksperimen_SML_Yusuf-Saputrah/dataset_raw.csv'
+      - 'Eksperimen_SML_Yusuf-Saputrah/preprocessing/automate_Yusuf-Saputrah.py'
 
 jobs:
   preprocess:
@@ -28,13 +28,13 @@ jobs:
 
       - name: Run preprocessing script
         run: |
-          cd preprocessing
+          cd Eksperimen_SML_Yusuf-Saputrah/preprocessing
           python automate_Yusuf-Saputrah.py
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add preprocessing/dataset_preprocessing.csv
+          git add Eksperimen_SML_Yusuf-Saputrah/preprocessing/dataset_preprocessing.csv
           git commit -m "Automated data preprocessing update" || echo "No changes to commit"
           git push

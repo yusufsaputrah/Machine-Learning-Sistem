@@ -50,6 +50,12 @@ jobs:
           echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
           echo "Latest Run ID: $RUN_ID"
 
+      - name: Upload MLflow Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-artifacts
+          path: Workflow-CI/MLProject/mlruns/
+
       - name: Build Docker Model
         env:
           # Sama persis dengan saat training agar MLflow bisa resolve runs:/<run_id>/model
