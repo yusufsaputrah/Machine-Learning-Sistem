@@ -1,53 +1,72 @@
-# Machine Learning System - MLOps
+# 🚀 Machine Learning System - MLOps (Advance Level)
 
-Proyek ini adalah submission untuk kelas **Machine Learning System (MLOps)** di Dicoding. Proyek ini mencakup seluruh siklus *end-to-end* sistem Machine Learning mulai dari pemrosesan data, pelatihan model dengan *tracking*, otomatisasi CI/CD, hingga *monitoring* sistem saat *serving*.
+Proyek ini merupakan *submission* untuk kelas **Machine Learning System (MLOps)** di Dicoding. Proyek ini dirancang untuk mencapai **Kriteria Advance** pada seluruh tahapan penilaian, mencakup siklus *end-to-end* mulai dari pemrosesan data, pelatihan model dengan *tracking* (MLflow & DagsHub), otomatisasi CI/CD (GitHub Actions), hingga *monitoring* dan *alerting* sistem saat *serving* (Prometheus & Grafana).
 
 ## 👨‍💻 Penulis
 - **Nama:** Yusuf Saputrah
-- **Username Dicoding:** yusuf1610 (Yusuf Saputrah)
+- **Username Dicoding:** yusuf1610
 
 ## 🔗 Tautan Penting
 | Layanan | Tautan |
 |---|---|
 | **GitHub Repository** | [Machine-Learning-Sistem](https://github.com/yusufsaputrah/Machine-Learning-Sistem) |
-| **DagsHub** | [yusufsaputrah/Machine-Learning-Sistem](https://dagshub.com/yusufsaputrah/Machine-Learning-Sistem) |
-| **Docker Hub** | [yusuf1610/sistem-ml-model](https://hub.docker.com/r/yusuf1610/sistem-ml-model) |
-| **GitHub Actions CI** | [Actions](https://github.com/yusufsaputrah/Machine-Learning-Sistem/actions) |
-
-## 🗂️ Struktur Direktori
-
-Repositori ini terdiri dari beberapa komponen utama yang memenuhi setiap kriteria penilaian (Basic hingga Advance):
-
-### 1. `Eksperimen_SML_Yusuf-Saputrah/`
-Berisi skrip untuk otomatisasi *Data Preprocessing*.
-- `preprocessing/Eksperimen_Yusuf-Saputrah.ipynb`: Eksperimen awal pemrosesan data (Data Loading, EDA, Preprocessing).
-- `preprocessing/automate_Yusuf-Saputrah.py`: Skrip Python otomatis yang merangkum *pipeline* preprocessing.
-- `dataset_raw.csv`: Data mentah sebelum diproses.
-
-### 2. `Membangun_model/`
-Berisi skrip untuk *Model Training* dan integrasi MLflow dengan DagsHub.
-- `modelling.py`: Model dasar RandomForest dengan MLflow autologging.
-- `modelling_tuning.py`: Hyperparameter tuning dengan GridSearchCV + artefak tambahan (Confusion Matrix, Feature Importance, Classification Report) dan integrasi DagsHub.
-- `requirements.txt`: *Dependency* spesifik untuk tahapan *modelling*.
-- Kumpulan *screenshot* hasil eksekusi DagsHub dan artefak model.
-
-### 3. `Workflow-CI/`
-Berisi konfigurasi MLflow Project dan otomatisasi CI/CD.
-- `MLProject/`: MLflow Project yang berisi skrip training, dataset, dan konfigurasi Conda.
-- `.github/workflows/retrain.yml`: *Workflow* GitHub Actions yang otomatis melakukan *retrain* model, *build* Docker image, dan *push* ke Docker Hub ketika ada perubahan di-*push* ke *branch* `main`.
-
-### 4. `Monitoring_dan_Logging/`
-Berisi seluruh implementasi untuk *Serving*, *Monitoring*, dan *Alerting*.
-- `3.prometheus_exporter.py`: Skrip *exporter* yang mengekspos 10 jenis metrik *monitoring* ke Prometheus.
-- `7.inference.py`: Skrip *inference* untuk serving model.
-- `docker-compose.yml` & `2.prometheus.yml`: Konfigurasi *container* untuk menjalankan Prometheus dan Grafana.
-- Folder *screenshot* (`4.bukti monitoring Prometheus`, `5.bukti monitoring Grafana`, `6.bukti alerting Grafana`) yang membuktikan sistem telah berhasil menangkap metrik-metrik kesehatan model secara *real-time* hingga membunyikan alarm (Status: **Firing**) ketika metrik melampaui batas yang ditentukan.
-
-## 🚀 Cara Menjalankan Monitoring (Opsional)
-Jika penilai ingin menjalankan *monitoring dashboard* secara mandiri:
-1. Jalankan eksportir data: `python Monitoring_dan_Logging/3.prometheus_exporter.py`
-2. Jalankan mesin metrik dan visualisasi: `cd Monitoring_dan_Logging && docker-compose up -d`
-3. Akses `localhost:9090` untuk Prometheus dan `localhost:3000` untuk Grafana.
+| **DagsHub Tracking UI** | [yusufsaputrah/Machine-Learning-Sistem](https://dagshub.com/yusufsaputrah/Machine-Learning-Sistem) |
+| **Docker Hub Image** | [yusuf1610/sistem-ml-model](https://hub.docker.com/r/yusuf1610/sistem-ml-model) |
+| **GitHub Actions CI/CD** | [Actions Workflow](https://github.com/yusufsaputrah/Machine-Learning-Sistem/actions) |
 
 ---
-*Proyek ini dirancang untuk memenuhi kriteria Advance Kelas Dicoding MLOps.*
+
+## 🗂️ Struktur Direktori & Pencapaian Kriteria
+
+Repositori ini terdiri dari 4 komponen utama yang masing-masing memenuhi **Kriteria Advance**:
+
+### 1. Kriteria 1: Eksperimen Dataset (`Eksperimen_SML_Yusuf-Saputrah/`)
+Berisi skrip untuk eksperimen dan otomatisasi *Data Preprocessing*.
+- `preprocessing/Eksperimen_Yusuf-Saputrah.ipynb`: Eksperimen awal (Data Loading, EDA, Preprocessing).
+- `preprocessing/automate_Yusuf-Saputrah.py`: Skrip *pipeline* preprocessing otomatis.
+- **Pencapaian Advance:** Telah terintegrasi dengan GitHub Actions Workflow untuk melakukan otomatisasi preprocessing.
+
+### 2. Kriteria 2: Membangun Model (`Membangun_model/`)
+Berisi skrip untuk *Model Training* dan integrasi MLflow.
+- `modelling.py`: Pelatihan model dasar dengan MLflow autologging.
+- `modelling_tuning.py`: Hyperparameter tuning (GridSearchCV), pencatatan *manual logging*, dan tambahan artefak pendukung (Confusion Matrix, Feature Importance, Classification Report).
+- **Pencapaian Advance:** Eksperimen telah tersimpan secara *online* di DagsHub dan menggunakan *manual logging* dengan lebih dari 2 artefak tambahan.
+
+### 3. Kriteria 3: Workflow CI (`Workflow-CI/`)
+Berisi konfigurasi otomatisasi CI/CD untuk pelatihan ulang model.
+- `MLProject/`: Folder utama MLflow Project (berisi skrip training dan `conda.yaml`).
+- `.github/workflows/retrain.yml`: *Workflow* GitHub Actions untuk otomatisasi *retrain*.
+- **Pencapaian Advance:** Workflow secara otomatis melakukan *retrain* model, mem-paketkannya menjadi *Docker Image*, lalu melakukan *push* otomatis ke Docker Hub.
+
+### 4. Kriteria 4: Monitoring dan Logging (`Monitoring_dan_Logging/`)
+Berisi implementasi *Model Serving*, pemantauan metrik secara *real-time*, dan sistem peringatan.
+- `3.prometheus_exporter.py`: Server *inference* nyata yang melayani permintaan (`/predict`) dan mengekspos metrik kesehatan model ke Prometheus.
+- `7.inference.py`: Skrip untuk melakukan simulasi *request inference* ke server.
+- `docker-compose.yml` & `2.prometheus.yml`: Orkestrasi kontainer Prometheus dan Grafana.
+- Folder Bukti: Berisi *screenshot* dari Docker Desktop, 10+ metrik Prometheus/Grafana, dan konfigurasi peringatan (*alerting*).
+- **Pencapaian Advance:** Model di-*serve* secara nyata (termasuk via Docker), pemantauan menggunakan **lebih dari 10 metrik**, dan memiliki **3 aturan *alerting*** di Grafana.
+
+---
+
+## 🚀 Cara Menjalankan Monitoring Secara Lokal
+
+Jika ingin menjalankan *server inference* dan *monitoring dashboard* secara mandiri:
+1. **Jalankan Inference Server & Exporter:** 
+   ```bash
+   python3 Monitoring_dan_Logging/3.prometheus_exporter.py
+   ```
+2. **Jalankan Prometheus & Grafana:** 
+   ```bash
+   cd Monitoring_dan_Logging
+   docker-compose up -d
+   ```
+3. **Simulasi Traffic (Opsional):**
+   ```bash
+   python3 Monitoring_dan_Logging/7.inference.py
+   ```
+4. **Akses Dashboard:**
+   - Prometheus: `http://localhost:9090`
+   - Grafana: `http://localhost:3000`
+
+---
+*Dibuat untuk memenuhi standar kompetensi kelulusan dengan predikat terbaik di kelas Machine Learning System (MLOps) Dicoding.*
