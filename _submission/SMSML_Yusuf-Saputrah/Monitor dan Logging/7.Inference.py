@@ -4,7 +4,7 @@ import random
 
 def simulate_traffic():
     print("Mengirimkan real HTTP requests ke endpoint Model Serving API...")
-    url = "http://localhost:8001/predict"
+    url = "http://localhost:8000/predict"
     
     for i in range(50):
         print(f"Request ke-{i+1}...")
