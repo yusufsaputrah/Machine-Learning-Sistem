@@ -9,10 +9,12 @@ Proyek ini merupakan *submission* untuk kelas **Machine Learning System (MLOps)*
 ## 🔗 Tautan Penting
 | Layanan | Tautan |
 |---|---|
-| **GitHub Repository** | [Machine-Learning-Sistem](https://github.com/yusufsaputrah/Machine-Learning-Sistem) |
+| **GitHub Repository Utama** | [Machine-Learning-Sistem](https://github.com/yusufsaputrah/Machine-Learning-Sistem) |
+| **GitHub Repo Kriteria 1 (Eksperimen SML)** | [Eksperimen_SML](https://github.com/yusufsaputrah/Eksperimen_SML) |
+| **GitHub Repo Kriteria 3 (Workflow CI)** | [Workflow-CI](https://github.com/yusufsaputrah/Workflow-CI) |
 | **DagsHub Tracking UI** | [yusufsaputrah/Machine-Learning-Sistem](https://dagshub.com/yusufsaputrah/Machine-Learning-Sistem) |
 | **Docker Hub Image** | [yusuf1610/sistem-ml-model](https://hub.docker.com/r/yusuf1610/sistem-ml-model) |
-| **GitHub Actions CI/CD** | [Actions Workflow](https://github.com/yusufsaputrah/Machine-Learning-Sistem/actions) |
+| **GitHub Actions CI/CD (Utama)** | [Actions Workflow](https://github.com/yusufsaputrah/Machine-Learning-Sistem/actions) |
 
 ---
 
@@ -21,6 +23,9 @@ Proyek ini merupakan *submission* untuk kelas **Machine Learning System (MLOps)*
 Repositori ini terdiri dari 4 komponen utama yang masing-masing memenuhi **Kriteria Advance**:
 
 ### 1. Kriteria 1: Eksperimen Dataset (`Eksperimen_SML_Yusuf-Saputrah/`)
+> **PEMBERITAHUAN UNTUK REVIEWER:** Sesuai *feedback*, bagian ini telah dipindahkan ke **repositori terpisah**.
+> Tautan Repositori: [https://github.com/yusufsaputrah/Eksperimen_SML](https://github.com/yusufsaputrah/Eksperimen_SML)
+
 Berisi skrip untuk eksperimen dan otomatisasi *Data Preprocessing*.
 - `preprocessing/Eksperimen_Yusuf-Saputrah.ipynb`: Eksperimen awal (Data Loading, EDA, Preprocessing).
 - `preprocessing/automate_Yusuf-Saputrah.py`: Skrip *pipeline* preprocessing otomatis.
@@ -33,6 +38,9 @@ Berisi skrip untuk *Model Training* dan integrasi MLflow.
 - **Pencapaian Advance:** Eksperimen telah tersimpan secara *online* di DagsHub dan menggunakan *manual logging* dengan lebih dari 2 artefak tambahan.
 
 ### 3. Kriteria 3: Workflow CI (`Workflow-CI/`)
+> **PEMBERITAHUAN UNTUK REVIEWER:** Sesuai *feedback*, bagian ini telah dipindahkan ke **repositori terpisah**.
+> Tautan Repositori: [https://github.com/yusufsaputrah/Workflow-CI](https://github.com/yusufsaputrah/Workflow-CI)
+
 Berisi konfigurasi otomatisasi CI/CD untuk pelatihan ulang model.
 - `MLProject/`: Folder utama MLflow Project (berisi skrip training dan `conda.yaml`).
 - `.github/workflows/retrain.yml`: *Workflow* GitHub Actions untuk otomatisasi *retrain*.
