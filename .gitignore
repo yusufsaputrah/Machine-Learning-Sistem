@@ -46,3 +46,7 @@ logs/
 
 # Archives
 *.zip
+
+#Readme
+*.README.md
+README.md
